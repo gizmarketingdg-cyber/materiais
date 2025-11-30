@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protocolo ST de Medidas - Desafio S21S</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 15mm;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: white;
+            padding: 20px;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 4px solid #00CED1;
+        }
+        
+        .logo-space {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 15px;
+            background: linear-gradient(135deg, #00CED1 0%, #20B2AA 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        h1 {
+            color: #00CED1;
+            font-size: 32px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        .intro-box {
+            background: linear-gradient(135deg, #E6FFFA 0%, #F0F8FF 100%);
+            border-left: 5px solid #00CED1;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+        }
+        
+        .intro-box h2 {
+            color: #00CED1;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+        
+        .intro-box p {
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        
+        .important-box {
+            background: #FFF9E6;
+            border: 2px solid #FFD700;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .important-box h3 {
+            color: #FF8C00;
+            margin-bottom: 10px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .important-box ul {
+            margin-left: 20px;
+            font-size: 14px;
+        }
+        
+        .important-box li {
+            margin-bottom: 8px;
+        }
+        
+        .measurement-section {
+            margin-bottom: 30px;
+            page-break-inside: avoid;
+        }
+        
+        .measurement-header {
+            background: linear-gradient(135deg, #00CED1 0%, #20B2AA 100%);
+            color: white;
+            padding: 12px 15px;
+            border-radius: 8px 8px 0 0;
+            font-size: 18px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .measurement-content {
+            background: #F8F8F8;
+            padding: 20px;
+            border: 2px solid #00CED1;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+        }
+        
+        .measurement-visual {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .visual-placeholder {
+            background: white;
+            border: 3px dashed #00CED1;
+            border-radius: 8px;
+            padding: 40px 20px;
+            text-align: center;
+            color: #00CED1;
+            font-size: 48px;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .visual-placeholder .icon {
+            font-size: 64px;
+        }
+        
+        .visual-placeholder .text {
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .steps {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+        
+        .steps h4 {
+            color: #00CED1;
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+        
+        .step-item {
+            margin-bottom: 12px;
+            padding-left: 30px;
+            position: relative;
+            font-size: 14px;
+        }
+        
+        .step-item::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #00CED1;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .tip-box {
+            background: #E6F7FF;
+            border-left: 4px solid #1E90FF;
+            padding: 12px;
+            margin-top: 15px;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+        
+        .tip-box strong {
+            color: #1E90FF;
+        }
+        
+        .schedule {
+            background: white;
+            border: 2px solid #00CED1;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        
+        .schedule h3 {
+            color: #00CED1;
+            margin-bottom: 15px;
+            font-size: 20px;
+            text-align: center;
+        }
+        
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .schedule-item {
+            background: #F0F8FF;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid #00CED1;
+        }
+        
+        .schedule-item .day {
+            background: #FFD700;
+            color: #333;
+            padding: 8px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .schedule-item .desc {
+            font-size: 13px;
+            color: #666;
+        }
+        
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #00CED1;
+            text-align: center;
+        }
+        
+        .motivational {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #333;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        @media print {
+            body {
+                padding: 0;
+            }
+            
+            .container {
+                max-width: 100%;
+            }
+            
+            .measurement-section {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <div class="logo-space">S21S</div>
+            <h1>PROTOCOLO ST DE MEDIDAS</h1>
+            <div class="subtitle">Guia Completo para Acompanhar Sua Evolução</div>
+            <div class="subtitle" style="color: #00CED1; font-weight: bold;">Desafio S21S | Simonia Teodoro</div>
+        </div>
+        
+        <!-- INTRODUÇÃO -->
+        <div class="intro-box">
+            <h2>📏 Por que tirar medidas é importante?</h2>
+            <p><strong>A balança não conta a história completa!</strong> Durante o desafio, você pode estar perdendo gordura e ganhando massa muscular, o que pode não refletir tanto no peso, mas SIM nas medidas corporais.</p>
+            <p>Tirar as medidas corretamente garante que você acompanhe sua verdadeira evolução e celebre cada centímetro perdido! 🎉</p>
+        </div>
+        
+        <!-- AVISOS IMPORTANTES -->
+        <div class="important-box">
+            <h3>⚠️ REGRAS DE OURO para Medidas Precisas</h3>
+            <ul>
+                <li><strong>Sempre tire as medidas no mesmo horário</strong> - preferencialmente pela manhã, em jejum</li>
+                <li><strong>Use a mesma fita métrica</strong> em todas as medições (de preferência uma flexível)</li>
+                <li><strong>Vista-se com roupas leves</strong> ou tire as medidas sem roupa (para mais precisão)</li>
+                <li><strong>Não puxe a fita com força</strong> - ela deve estar justa, mas sem apertar</li>
+                <li><strong>Fique em pé, relaxada</strong>, respirando normalmente</li>
+                <li><strong>Anote TUDO</strong> no seu checklist - inclusive as fotos!</li>
+            </ul>
+        </div>
+        
+        <!-- MEDIDA 1: PESO -->
+        <div class="measurement-section">
+            <div class="measurement-header">
+                <span>⚖️</span>
+                <span>1. PESO CORPORAL</span>
+            </div>
+            <div class="measurement-content">
+                <div class="measurement-visual">
+                    <div class="visual-placeholder">
+                        <div class="icon">⚖️</div>
+                        <div class="text">Balança Digital<br>ou Analógica</div>
+                    </div>
+                    <div class="steps">
+                        <h4>Como medir:</h4>
+                        <div class="step-item">Suba na balança pela manhã, logo após acordar e ir ao banheiro</div>
+                        <div class="step-item">Fique descalça e com roupas leves (ou sem roupa)</div>
+                        <div class="step-item">Suba na balança com os pés paralelos, no centro</div>
+                        <div class="step-item">Fique parada, olhando para frente</div>
+                        <div class="step-item">Anote o valor em kg (ex: 72,5 kg)</div>
+                    </div>
+                </div>
+                <div class="tip-box">
+                    <strong>💡 DICA ST:</strong> O peso pode variar 1-2kg ao longo do dia devido a hidratação, alimentação e ciclo hormonal. Por isso, sempre pese no mesmo horário!
+                </div>
+            </div>
+        </div>
+        
+        <!-- MEDIDA 2: CINTURA -->
+        <div class="measurement-section">
+            <div class="measurement-header">
+                <span>📐</span>
+                <span>2. CINTURA (Ponto mais estreito)</span>
+            </div>
+            <div class="measurement-content">
+                <div class="measurement-visual">
+                    <div class="visual-placeholder">
+                        <div class="icon">👗</div>
+                        <div class="text">Linha da Cintura<br>(Ponto mais fino)</div>
+                    </div>
+                    <div class="steps">
+                        <h4>Como medir:</h4>
+                        <div class="step-item">Localize o ponto mais estreito do seu tronco (geralmente acima do umbigo)</div>
+                        <div class="step-item">Solte o ar naturalmente (não prenda a respiração)</div>
+                        <div class="step-item">Passe a fita ao redor da cintura, paralela ao chão</div>
+                        <div class="step-item">A fita deve estar justa, mas sem apertar</div>
+                        <div class="step-item">Anote o valor em cm (ex: 85 cm)</div>
+                    </div>
+                </div>
+                <div class="tip-box">
+                    <strong>💡 DICA ST:</strong> A cintura é uma das medidas que mais responde aos treinos! Não suga a barriga na hora de medir - seja honesta consigo mesma.
+                </div>
+            </div>
+        </div>
+        
+        <!-- MEDIDA 3: ABDÔMEN -->
+        <div class="measurement-section">
+            <div class="measurement-header">
+                <span>📐</span>
+                <span>3. ABDÔMEN (Na altura do umbigo)</span>
+            </div>
+            <div class="measurement-content">
+                <div class="measurement-visual">
+                    <div class="visual-placeholder">
+                        <div class="icon">🎯</div>
+                        <div class="text">Linha do Umbigo<br>(Região abdominal)</div>
+                    </div>
+                    <div class="steps">
+                        <h4>Como medir:</h4>
+                        <div class="step-item">Localize a altura do seu umbigo</div>
+                        <div class="step-item">Respire normalmente, sem prender o ar</div>
+                        <div class="step-item">Passe a fita ao redor do abdômen na altura do umbigo</div>
+                        <div class="step-item">Mantenha a fita paralela ao chão</div>
+                        <div class="step-item">Anote o valor em cm (ex: 92 cm)</div>
+                    </div>
+                </div>
+                <div class="tip-box">
+                    <strong>💡 DICA ST:</strong> O abdômen pode ser maior que a cintura - isso é NORMAL! O importante é acompanhar a redução ao longo dos 21 dias.
+                </div>
+            </div>
+        </div>
+        
+        <!-- MEDIDA 4: QUADRIL -->
+        <div class="measurement-section">
+            <div class="measurement-header">
+                <span>📐</span>
+                <span>4. QUADRIL (Ponto mais largo)</span>
+            </div>
+            <div class="measurement-content">
+                <div class="measurement-visual">
+                    <div class="visual-placeholder">
+                        <div class="icon">🍑</div>
+                        <div class="text">Região do Quadril<br>(Parte mais larga)</div>
+                    </div>
+                    <div class="steps">
+                        <h4>Como medir:</h4>
+                        <div class="step-item">Localize o ponto mais largo do quadril (geralmente na altura do bumbum)</div>
+                        <div class="step-item">Fique em pé com os pés juntos</div>
+                        <div class="step-item">Passe a fita ao redor da parte mais larga do quadril</div>
+                        <div class="step-item">Mantenha a fita paralela ao chão</div>
+                        <div class="step-item">Anote o valor em cm (ex: 105 cm)</div>
+                    </div>
+                </div>
+                <div class="tip-box">
+                    <strong>💡 DICA ST:</strong> O quadril também responde muito bem aos treinos! Você vai sentir as roupas ficando mais folgadas nessa região.
+                </div>
+            </div>
+        </div>
+        
+        <!-- MEDIDA 5: BRAÇOS -->
+        <div class="measurement-section">
+            <div class="measurement-header">
+                <span>📐</span>
+                <span>5. BRAÇOS (Ponto mais largo)</span>
+            </div>
+            <div class="measurement-content">
+                <div class="measurement-visual">
+                    <div class="visual-placeholder">
+                        <div class="icon">💪</div>
+                        <div class="text">Bíceps Relaxado<br>(Parte superior)</div>
+                    </div>
+                    <div class="steps">
+                        <h4>Como medir:</h4>
+                        <div class="step-item">Mantenha o braço relaxado ao lado do corpo</div>
+                        <div class="step-item">Localize a parte mais larga do braço (geralmente no meio do bíceps)</div>
+                        <div class="step-item">Passe a fita ao redor do braço</div>
+                        <div class="step-item">Mantenha o braço relaxado, sem contrair</div>
+                        <div class="step-item">Anote o valor em cm (ex: 32 cm)</div>
+                    </div>
+                </div>
+                <div class="tip-box">
+                    <strong>💡 DICA ST:</strong> Meça sempre o mesmo braço (direito ou esquerdo) para manter a consistência. Com os treinos, você verá redução na gordura e ganho de tônus!
+                </div>
+            </div>
+        </div>
+        
+        <!-- CRONOGRAMA DE MEDIÇÕES -->
+        <div class="schedule">
+            <h3>📅 Quando Tirar Suas Medidas no Desafio S21S</h3>
+            <div class="schedule-grid">
+                <div class="schedule-item">
+                    <div class="day">DIA 1</div>
+                    <div class="desc">📸 Medidas Iniciais<br><br>+ Fotos de frente, lado e costas<br><br>Base para acompanhar toda evolução</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="day">DIA 11</div>
+                    <div class="desc">📊 Medidas Intermediárias<br><br>Momento de celebrar as primeiras conquistas!<br><br>Você já está no meio do caminho</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="day">DIA 21</div>
+                    <div class="desc">🎉 Medidas Finais<br><br>+ Fotos finais<br><br>Compare com o dia 1 e CELEBRE sua transformação!</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- RODAPÉ MOTIVACIONAL -->
+        <div class="footer">
+            <div class="motivational">
+                💚 Cada centímetro perdido é uma vitória! Confie no processo e celebre cada conquista! 💪
+            </div>
+            <div style="font-size: 12px; color: #666; margin-top: 10px;">
+                <strong>Desafio S21S - Simonia Teodoro</strong><br>
+                @simonia_teodoro | (27) 99975-6871
+            </div>
+        </div>
+    </div>
+</body>
+</html>
